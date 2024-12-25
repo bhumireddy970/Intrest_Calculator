@@ -1,0 +1,30 @@
+
+.header-container {
+     
+    color: red;
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid #388E3C; 
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8mzPDvB2lxyzDj1a73mbjIB76btmWJCHPJw&s");
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center center;
+  }
+  
+
+  .header-container h1 {
+    font-family: 'Arial', sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  
+
+  .header-container h1 u {
+    text-decoration: none;
+    border-bottom: 3px solid red;
+    padding-bottom: 5px;
+  }
+  

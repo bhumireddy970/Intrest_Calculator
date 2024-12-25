@@ -1,0 +1,137 @@
+.body-container {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.main-container {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+      url("https://c8.alamy.com/comp/2FK9AE1/assam-india-march-30-2021-word-interest-written-on-wooden-cubes-stock-image-2FK9AE1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center center;
+    margin: 0px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.body-container h2 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.body-container label {
+    font-weight: bold;
+    color: #555;
+}
+
+.body-container input {
+    width: 60%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.body-container input:focus {
+    border-color: #4CAF50;
+}
+
+.button {
+    background: linear-gradient(135deg, #4CAF50, #81C784); 
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    display: inline-flex;
+    width: 40%;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px 15px;
+}
+
+.button:hover {
+    background: linear-gradient(135deg, #45a049, #66bb6a); 
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+}
+
+.button:active {
+    background: linear-gradient(135deg, #3e8e41, #4caf50); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: scale(1);
+}
+
+.clear-button {
+    background: linear-gradient(135deg, #f44336, #ff6659); 
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    display: inline-flex;
+    width: 40%;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px 15px;
+}
+
+.clear-button:hover {
+    background: linear-gradient(135deg, #e53935, #ef5350); 
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+}
+
+.clear-button:active {
+    background: linear-gradient(135deg, #d32f2f, #c62828); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: scale(1);
+}
+
+.results {
+    margin-top: 20px;
+}
+
+.error-message {
+    margin-top: 10px;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+.success-message {
+    color: green;
+    font-weight: bold;
+    text-align: center;
+}
+
+.body-container input {
+    border-radius: 12px;
+}
+
+.body-container {
+    background: linear-gradient(to top left, #ffffff, #f0f8ff); 
+}
