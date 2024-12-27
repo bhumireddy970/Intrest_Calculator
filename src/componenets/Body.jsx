@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import "./body.css";
 
-const Body = () => {
+const Body = ({ history, setHistory }) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [principle, setPrinciple] = useState("");
+  const [rate, setRate] = useState("");
   const [timeDifference, setTimeDifference] = useState("");
+  const [principleError, setPrincipleError] = useState("");
+  const [rateError, setRateError] = useState("");
+  const [intrest, setIntrest] = useState(0);
+  const [amount, setAmount] = useState(0);
   const [, setDay] = useState(0);
   const [, setMonth] = useState(0);
   const [, setYear] = useState(0);
-  const [principle, setPrinciple] = useState("");
-  const [rate, setRate] = useState("");
-  const [intrest, setIntrest] = useState();
-  const [amount, setAmount] = useState(0);
-  const [principleError, setPrincipleError] = useState("");
-  const [rateError, setRateError] = useState("");
 
   const calIntrest = () => {
-    // Reset previous errors
     setPrincipleError("");
     setRateError("");
 
@@ -29,19 +28,10 @@ const Body = () => {
         return;
       }
 
-      let tempYears = end.getFullYear() - start.getFullYear();
-      let tempMonths = end.getMonth() - start.getMonth();
-      let tempDays = end.getDate() - start.getDate();
-
-      if (tempDays < 0) {
-        tempMonths -= 1;
-        tempDays += 30;
-      }
-
-      if (tempMonths < 0) {
-        tempYears -= 1;
-        tempMonths += 12;
-      }
+      const tempYears = end.getFullYear() - start.getFullYear();
+      const tempMonths = end.getMonth() - start.getMonth();
+      const tempDays = end.getDate() - start.getDate();
+      const totalMonths = tempYears * 12 + tempMonths + tempDays / 30;
 
       setYear(tempYears);
       setMonth(tempMonths);
@@ -50,8 +40,6 @@ const Body = () => {
       setTimeDifference(
         `${tempYears} సంవత్సరాలు, ${tempMonths} నెలలు, ${tempDays} రోజులు`
       );
-
-      const totalMonths = tempYears * 12 + tempMonths + tempDays / 30;
       const parsedPrinciple = parseFloat(principle);
       const parsedRate = parseFloat(rate);
 
@@ -69,6 +57,17 @@ const Body = () => {
         (parsedPrinciple * totalMonths * parsedRate) / 100;
       setIntrest(calculatedInterest.toFixed(2));
       setAmount((parsedPrinciple + calculatedInterest).toFixed(2));
+
+      // Update history
+      const newEntry = {
+        startDate,
+        endDate,
+        principle: parsedPrinciple,
+        rate: parsedRate,
+        intrest: calculatedInterest.toFixed(2),
+        amount: (parsedPrinciple + calculatedInterest).toFixed(2),
+      };
+      setHistory([newEntry, ...history]);
     } else {
       setTimeDifference("దయచేసి తేదీలను నమోదు చేయండి.");
     }
