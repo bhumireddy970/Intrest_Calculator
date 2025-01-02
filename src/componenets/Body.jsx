@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "./body.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Body = ({ history, setHistory }) => {
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
   const [principle, setPrinciple] = useState("");
   const [rate, setRate] = useState("");
   const [timeDifference, setTimeDifference] = useState("");
@@ -11,31 +13,33 @@ const Body = ({ history, setHistory }) => {
   const [rateError, setRateError] = useState("");
   const [intrest, setIntrest] = useState(0);
   const [amount, setAmount] = useState(0);
-  const [, setDay] = useState(0);
-  const [, setMonth] = useState(0);
-  const [, setYear] = useState(0);
 
   const calIntrest = () => {
     setPrincipleError("");
     setRateError("");
 
-    if (startDate && endDate) {
-      const start = new Date(startDate);
-      const end = new Date(endDate);
+    if (startDate instanceof Date && endDate instanceof Date) {
+      const start = startDate;
+      const end = endDate;
 
       if (end < start) {
         setTimeDifference("తేదీలను సరిగా నమోదు చేయండి!");
         return;
       }
 
-      const tempYears = end.getFullYear() - start.getFullYear();
-      const tempMonths = end.getMonth() - start.getMonth();
-      const tempDays = end.getDate() - start.getDate();
-      const totalMonths = tempYears * 12 + tempMonths + tempDays / 30;
+      let tempYears = end.getFullYear() - start.getFullYear();
+      let tempMonths = end.getMonth() - start.getMonth();
+      let tempDays = end.getDate() - start.getDate();
+      let totalMonths = tempYears * 12 + tempMonths + tempDays / 30;
 
-      setYear(tempYears);
-      setMonth(tempMonths);
-      setDay(tempDays);
+      if (tempDays < 0) {
+        tempMonths -= 1;
+        tempDays += 30;
+      }
+      if (tempMonths < 0) {
+        tempYears -= 1;
+        tempMonths += 12;
+      }
 
       setTimeDifference(
         `${tempYears} సంవత్సరాలు, ${tempMonths} నెలలు, ${tempDays} రోజులు`
@@ -43,12 +47,12 @@ const Body = ({ history, setHistory }) => {
       const parsedPrinciple = parseFloat(principle);
       const parsedRate = parseFloat(rate);
 
-      if (!parsedPrinciple || parsedPrinciple <= 0) {
+      if (isNaN(parsedPrinciple) || parsedPrinciple <= 0) {
         setPrincipleError("దయచేసి సరైన అసలు నమోదు చేయండి.");
         return;
       }
 
-      if (!parsedRate || parsedRate <= 0) {
+      if (isNaN(parsedRate) || parsedRate <= 0) {
         setRateError("దయచేసి సరైన వడ్డీ నమోదు చేయండి.");
         return;
       }
@@ -74,8 +78,8 @@ const Body = ({ history, setHistory }) => {
   };
 
   const clearFields = () => {
-    setStartDate("");
-    setEndDate("");
+    setStartDate(null);
+    setEndDate(null);
     setPrinciple("");
     setRate("");
     setTimeDifference("");
@@ -90,18 +94,22 @@ const Body = ({ history, setHistory }) => {
       <div className="body-container">
         <h2>
           <label>డబ్బులు తీసుకున్న తేది : </label>
-          <input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            dateFormat="yyyy-MM-dd"
+            placeholderText="Select Start Date"
+            className="datepicker-input"
           />
         </h2>
         <h2>
           <label>డబ్బులు ఇస్తున్న తేది : </label>
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            dateFormat="yyyy-MM-dd"
+            placeholderText="Select End Date"
+            className="datepicker-input"
           />
         </h2>
         <h2>

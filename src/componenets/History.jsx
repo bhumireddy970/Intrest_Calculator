@@ -6,16 +6,44 @@ const History = ({ history }) => {
     <div className="history-page">
       <h1>లావాదేవీల చరిత్ర</h1>
       {history.length > 0 ? (
-        <ul>
-          {history.map((entry, index) => (
-            <li key={index}>
-              <strong>తేదీలు:</strong> {entry.startDate} - {entry.endDate} |{" "}
-              <strong>అసలు:</strong> ₹{entry.principle} |{" "}
-              <strong>వడ్డీ:</strong> ₹{entry.intrest} |{" "}
-              <strong>మొత్తం:</strong> ₹{entry.amount}
-            </li>
-          ))}
-        </ul>
+        <div className="history-grid">
+          {history.map((entry, index) => {
+            // Format the dates before rendering
+            const formattedStartDate = new Date(
+              entry.startDate
+            ).toLocaleDateString("te-IN", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            });
+            const formattedEndDate = new Date(entry.endDate).toLocaleDateString(
+              "te-IN",
+              {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              }
+            );
+
+            return (
+              <div key={index} className="history-card">
+                <p>
+                  <strong>తేదీలు:</strong> {formattedStartDate} -{" "}
+                  {formattedEndDate}
+                </p>
+                <p>
+                  <strong>అసలు:</strong> ₹{entry.principle}
+                </p>
+                <p>
+                  <strong>వడ్డీ:</strong> ₹{entry.intrest}
+                </p>
+                <p>
+                  <strong>మొత్తం:</strong> ₹{entry.amount}
+                </p>
+              </div>
+            );
+          })}
+        </div>
       ) : (
         <p>చరిత్ర లభించదు</p>
       )}
