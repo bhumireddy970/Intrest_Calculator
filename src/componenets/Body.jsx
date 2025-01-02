@@ -97,7 +97,7 @@ const Body = ({ history, setHistory }) => {
           <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
-            dateFormat="yyyy-MM-dd"
+            dateFormat="dd-MM-yyyy"
             placeholderText="Select Start Date"
             className="datepicker-input"
           />
@@ -107,7 +107,7 @@ const Body = ({ history, setHistory }) => {
           <DatePicker
             selected={endDate}
             onChange={(date) => setEndDate(date)}
-            dateFormat="yyyy-MM-dd"
+            dateFormat="dd-MM-yyyy"
             placeholderText="Select End Date"
             className="datepicker-input"
           />
